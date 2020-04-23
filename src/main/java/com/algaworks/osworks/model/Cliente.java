@@ -15,7 +15,7 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "")
+	@NotBlank
 	@Size(max = 60)
 	private String nome;
 	

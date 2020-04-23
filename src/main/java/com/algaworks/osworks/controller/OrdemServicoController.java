@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.algaworks.osworks.dto.OrdemServicoDTO;
 import com.algaworks.osworks.model.OrdemServico;
 import com.algaworks.osworks.repository.OrdemServicoRepository;
 import com.algaworks.osworks.service.OrdemServicoService;
@@ -30,6 +32,9 @@ public class OrdemServicoController {
 	@Autowired
 	private OrdemServicoRepository servicoRepository;
 	
+	@Autowired
+	private ModelMapper modelMapper;
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public OrdemServico criar(@Valid @RequestBody OrdemServico ordemServico) {
@@ -42,11 +47,13 @@ public class OrdemServicoController {
 	}
 	
 	@GetMapping("/{ordemServicoId}")
-	public ResponseEntity<OrdemServico> buscar(@PathVariable Long ordemServicoId) {
+	public ResponseEntity<OrdemServicoDTO> buscar(@PathVariable Long ordemServicoId) {
 		Optional<OrdemServico> ordemServico = servicoRepository.findById(ordemServicoId);
 		
 		if (ordemServico.isPresent()) {
-			return ResponseEntity.ok(ordemServico.get());
+			OrdemServicoDTO dto = modelMapper.map(ordemServico.get(), OrdemServicoDTO.class);
+			
+			return ResponseEntity.ok(dto);
 		}
 		
 		return ResponseEntity.notFound().build();

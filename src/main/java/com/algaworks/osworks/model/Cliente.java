@@ -5,13 +5,17 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.algaworks.osworks.validation.ValidationGroups;
 
 @Entity
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotNull(groups = ValidationGroups.ClienteId.class)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	

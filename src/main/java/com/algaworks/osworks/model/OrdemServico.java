@@ -26,7 +26,7 @@ public class OrdemServico implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusOrdemServico status;
 	
-	private LocalDateTime dataBertura;
+	private LocalDateTime dataAbertura;
 	
 	private LocalDateTime dataFinalizacao;
 
@@ -70,12 +70,12 @@ public class OrdemServico implements Serializable {
 		this.status = status;
 	}
 
-	public LocalDateTime getDataBertura() {
-		return dataBertura;
+	public LocalDateTime getDataAbertura() {
+		return dataAbertura;
 	}
 
-	public void setDataBertura(LocalDateTime dataBertura) {
-		this.dataBertura = dataBertura;
+	public void setDataAbertura(LocalDateTime dataAbertura) {
+		this.dataAbertura = dataAbertura;
 	}
 
 	public LocalDateTime getDataFinalizacao() {

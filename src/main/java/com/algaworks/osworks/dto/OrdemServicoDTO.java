@@ -9,7 +9,7 @@ public class OrdemServicoDTO {
 
 	private Long id;
 	
-	private String nomeCliente;
+	private ClienteResumoDTO cliente;
 	
 	private String descricao;
 	
@@ -29,12 +29,12 @@ public class OrdemServicoDTO {
 		this.id = id;
 	}
 
-	public String getNomeCliente() {
-		return nomeCliente;
+	public ClienteResumoDTO getCliente() {
+		return cliente;
 	}
 
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	public void setCliente(ClienteResumoDTO cliente) {
+		this.cliente = cliente;
 	}
 
 	public String getDescricao() {

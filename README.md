@@ -7,6 +7,8 @@ Tópicos Abordados:
    - Atualização e remoção de recursos na API
    - Relacionamentos entre recursos REST
    
+[![Build Status](https://travis-ci.org/leonardo-teles/osworks-api.svg?branch=master)](https://travis-ci.org/leonardo-teles/osworks-api)   
+   
 Endpoinst Disponibilizados para Teste e Exemplos de Massa de Dados:
 
 #### Clientes

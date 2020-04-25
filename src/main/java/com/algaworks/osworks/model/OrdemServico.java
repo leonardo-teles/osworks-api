@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.algaworks.osworks.enums.StatusOrdemServico;
+import com.algaworks.osworks.exception.NegocioException;
 
 @Entity
 public class OrdemServico implements Serializable {
@@ -105,6 +106,23 @@ public class OrdemServico implements Serializable {
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
+	
+	public boolean podeSerFinalizada() {
+		return StatusOrdemServico.ABERTA.equals(getStatus());
+	}
+	
+	public boolean naoPodeSerFinalizada() {
+		return !podeSerFinalizada();
+	}
+	
+	public void finalizar() {
+		if (naoPodeSerFinalizada()) {
+			throw new NegocioException("Ordem de serviço não pode ser finalizada");
+		}
+		
+		setStatus(StatusOrdemServico.FINALIZADA);
+		setDataFinalizacao(OffsetDateTime.now());
+	}
 
 	@Override
 	public int hashCode() {
@@ -130,6 +148,4 @@ public class OrdemServico implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 }
